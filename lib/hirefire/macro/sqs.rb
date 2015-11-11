@@ -16,7 +16,8 @@ module HireFire
       # @return [Integer] the number of jobs in the queue(s).
       #
       def queue(*queues)
-        require "aws/sqs"
+        require 'aws-sdk'
+        
         queues = queues.flatten.map(&:to_s)
         length = 0
         client = Aws::SQS::Client.new
